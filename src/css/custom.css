@@ -48,14 +48,6 @@
   @apply container;
 }
 
-/* .main-wrapper {
-  @apply container p-0;
-}
-
-.main-wrapper > div {
-  @apply md:px-0;
-} */
-
 /* Docs - Make it a container*/
 .doc-root-wrapper {
   @apply container;
