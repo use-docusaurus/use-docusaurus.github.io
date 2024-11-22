@@ -17,7 +17,6 @@
   --ifm-color-primary-light: #1eb0f1;
   --ifm-color-primary-lighter: #2ab4f2;
   --ifm-color-primary-lightest: #4dc0f4;
-  --ifm-hero-background-color: #fff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -32,4 +31,32 @@
   --ifm-color-primary-lighter: #2ab4f2;
   --ifm-color-primary-lightest: #4dc0f4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+  @apply h-14 md:h-20;
+}
+
+.container {
+  @apply mx-auto;
+}
+
+.navbar__inner {
+  @apply container;
+}
+
+.main-wrapper {
+  @apply container p-0;
+}
+
+.main-wrapper > div {
+  @apply md:px-0;
+}
+
+.theme-doc-sidebar-container .menu {
+  @apply !pl-0;
+}
+
+[class*='sidebarLogo_'] {
+  @apply !mx-0;
 }

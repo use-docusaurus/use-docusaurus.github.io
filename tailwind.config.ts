@@ -7,8 +7,9 @@ import {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.html', './src/**/*.js', './src/**/*.tsx', './*.ts'],
-  corePlugins: {container: false},
+  corePlugins: {container: true},
   darkMode: ['class', '[data-theme="dark"]'],
+  important: true,
   theme: {
     extend: {},
   },
