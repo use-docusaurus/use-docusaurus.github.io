@@ -33,30 +33,45 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.navbar {
-  @apply h-14 md:h-20;
-}
-
+/* Add mx-auto to container */
 .container {
   @apply mx-auto;
+}
+
+/* Increase navbar height, and make it a container */
+
+.navbar {
+  /* @apply twp h-14 md:h-20; */
 }
 
 .navbar__inner {
   @apply container;
 }
 
-.main-wrapper {
+/* .main-wrapper {
   @apply container p-0;
 }
 
 .main-wrapper > div {
   @apply md:px-0;
+} */
+
+/* Docs - Make it a container*/
+.doc-root-wrapper {
+  @apply container;
 }
 
-.theme-doc-sidebar-container .menu {
+/* Docs - Remove left side padding */
+.doc-root-wrapper .theme-doc-sidebar-container .menu {
   @apply !pl-0;
 }
 
-[class*='sidebarLogo_'] {
+/* If we have hideOnScroll: true */
+.doc-root-wrapper [class*='sidebarLogo_'] {
   @apply !mx-0;
+}
+
+/* Blog - Remove padding of container */
+.blog-layout-wrapper .main-wrapper .container {
+  @apply md:px-0;
 }
