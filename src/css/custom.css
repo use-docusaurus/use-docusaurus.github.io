@@ -72,7 +72,3 @@
   --ifm-hero-background-color: var(--ifm-background-color);
   --ifm-hero-text-color: var(--ifm-font-color-base);
 }
-
-.svg {
-  color: var(--ifm-menu-color-active);
-}
