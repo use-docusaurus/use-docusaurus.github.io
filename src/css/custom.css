@@ -67,3 +67,12 @@
 .blog-wrapper .main-wrapper > div {
   @apply md:px-0;
 }
+
+.hero--primary {
+  --ifm-hero-background-color: var(--ifm-background-color);
+  --ifm-hero-text-color: var(--ifm-font-color-base);
+}
+
+.svg {
+  color: var(--ifm-menu-color-active);
+}
