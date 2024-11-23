@@ -64,7 +64,7 @@
 
 /* Docs - Remove left side padding */
 .docs-wrapper .theme-doc-sidebar-container .menu {
-  @apply !pl-0 !pt-[4.75rem];
+  @apply lg:!pl-0 lg:!pt-[4.75rem];
 }
 
 .docs-wrapper [class*='sidebarLogo_'] {
@@ -78,7 +78,7 @@
 
 .docs-wrapper [class*='docItemContainer_'],
 .docs-wrapper [class*='generatedIndexPage_'] {
-  @apply !pt-[3.75rem] px-4 py-16 lg:pl-8 lg:pr-0 xl:px-12;
+  @apply lg:!pt-[3.75rem] lg:pl-8 lg:pr-0 xl:px-12;
 }
 
 .docs-wrapper .table-of-contents {
@@ -102,8 +102,9 @@
   @apply !mt-4;
 }
 
-.docs-wrapper article h1 {
-  @apply text-4xl;
+.docs-wrapper article h1,
+.docs-wrapper h1[class*='title_'] {
+  @apply !text-4xl;
 }
 
 .docs-wrapper article h2 {
