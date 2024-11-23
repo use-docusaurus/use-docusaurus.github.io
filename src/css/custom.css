@@ -17,7 +17,6 @@
   --ifm-color-primary-light: #1eb0f1;
   --ifm-color-primary-lighter: #2ab4f2;
   --ifm-color-primary-lightest: #4dc0f4;
-  --ifm-hero-background-color: #fff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -32,4 +31,44 @@
   --ifm-color-primary-lighter: #2ab4f2;
   --ifm-color-primary-lightest: #4dc0f4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Add mx-auto to container */
+.container {
+  @apply mx-auto;
+}
+
+/* Increase navbar height, and make it a container */
+
+.navbar {
+  /* @apply twp h-14 md:h-20; */
+}
+
+.navbar__inner {
+  @apply container;
+}
+
+/* Docs - Make it a container*/
+.docs-wrapper .main-wrapper {
+  @apply container;
+}
+
+/* Docs - Remove left side padding */
+.docs-wrapper .theme-doc-sidebar-container .menu {
+  @apply !pl-0;
+}
+
+/* If we have hideOnScroll: true */
+.docs-wrapper [class*='sidebarLogo_'] {
+  @apply !mx-0;
+}
+
+/* Blog - Remove padding of container */
+.blog-wrapper .main-wrapper > div {
+  @apply md:px-0;
+}
+
+.hero--primary {
+  --ifm-hero-background-color: var(--ifm-background-color);
+  --ifm-hero-text-color: var(--ifm-font-color-base);
 }
