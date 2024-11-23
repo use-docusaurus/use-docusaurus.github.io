@@ -49,21 +49,21 @@
 }
 
 /* Docs - Make it a container*/
-.doc-root-wrapper {
+.docs-wrapper .main-wrapper {
   @apply container;
 }
 
 /* Docs - Remove left side padding */
-.doc-root-wrapper .theme-doc-sidebar-container .menu {
+.docs-wrapper .theme-doc-sidebar-container .menu {
   @apply !pl-0;
 }
 
 /* If we have hideOnScroll: true */
-.doc-root-wrapper [class*='sidebarLogo_'] {
+.docs-wrapper [class*='sidebarLogo_'] {
   @apply !mx-0;
 }
 
 /* Blog - Remove padding of container */
-.blog-layout-wrapper .main-wrapper .container {
+.blog-wrapper .main-wrapper > div {
   @apply md:px-0;
 }
