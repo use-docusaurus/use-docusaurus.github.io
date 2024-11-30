@@ -2,27 +2,20 @@
   @apply md:px-0;
 }
 
-.blog-list-page h2[class*="title_"],
+/* Blog has multiple pages:
+- blog list page
+- blog post page
+- blog authors page
+- blog tags page */
+
+/* We are making all avatar photos square rounded */
+.avatar__photo {
+  @apply !rounded-md;
+}
+
+/* Reduce the h1 title size on blog detail page */
 .blog-post-page h1[class*="title_"] {
   @apply !text-4xl;
-}
-
-.blog-list-page a {
-  @apply no-underline;
-}
-
-.blog-list-page article {
-  @apply py-8 px-8 rounded-xl bg-gray-50 dark:bg-gray-800 !mb-8;
-}
-
-.blog-post-page div[class*="authorSocials_"],
-.blog-list-page div[class*="authorSocials_"] {
-  @apply hidden;
-}
-
-.blog-post-page .avatar__photo,
-.blog-list-page .avatar__photo {
-  @apply !rounded-xl h-12 w-12;
 }
 
 .blog-post-page #__blog-post-container {
@@ -31,4 +24,50 @@
 
 .blog-post-page header {
   @apply pb-4 border-solid border-0 border-b border-gray-200 dark:border-gray-700;
+}
+
+/* Reduce avatar photo size on blog post page */
+.blog-post-page {
+  .avatar__photo {
+    @apply h-12 w-12;
+  }
+  article div[class*="authorSocials_"] {
+    @apply hidden;
+  }
+}
+
+.blog-post-page,
+.blog-authors-posts-page,
+.blog-tags-post-list-page,
+.blog-list-page {
+  a {
+    @apply no-underline;
+  }
+  a:not([class^="tag_"]),
+  a:not([class^="tag_"]):hover {
+    --ifm-link-color: var(--ifm-font-base-color);
+    --ifm-link-hover-color: var(--ifm-font-base-color);
+  }
+
+  a:not([class^="tag_"]):hover {
+    @apply opacity-95;
+  }
+}
+
+.blog-authors-posts-page,
+.blog-tags-post-list-page,
+.blog-list-page {
+  article {
+    @apply py-8 px-8 rounded-xl bg-gray-50 dark:bg-gray-800 !mb-8;
+  }
+
+  h2[class*="title_"] {
+    @apply !text-4xl;
+  }
+  article div[class*="authorSocials_"] {
+    @apply hidden;
+  }
+  article .avatar__photo {
+    @apply h-12 w-12;
+  }
 }
