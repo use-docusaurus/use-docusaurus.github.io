@@ -1,0 +1,19 @@
+.docs-wrapper .theme-doc-sidebar-container .menu {
+  @apply pl-0 !pr-1.5 text-sm lg:!pt-[1.25rem];
+}
+
+.docs-wrapper .menu__link {
+  @apply py-[3px] leading-5;
+}
+
+.docs-wrapper .menu__caret {
+  @apply py-[3px];
+}
+
+.docs-wrapper .menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+}
+
+.docs-wrapper .menu__link--active {
+  @apply font-normal;
+}

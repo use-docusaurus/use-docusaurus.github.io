@@ -1,0 +1,34 @@
+.blog-wrapper .main-wrapper > div {
+  @apply md:px-0;
+}
+
+.blog-list-page h2[class*="title_"],
+.blog-post-page h1[class*="title_"] {
+  @apply !text-4xl;
+}
+
+.blog-list-page a {
+  @apply no-underline;
+}
+
+.blog-list-page article {
+  @apply py-8 px-8 rounded-xl bg-gray-50 dark:bg-gray-800 !mb-8;
+}
+
+.blog-post-page div[class*="authorSocials_"],
+.blog-list-page div[class*="authorSocials_"] {
+  @apply hidden;
+}
+
+.blog-post-page .avatar__photo,
+.blog-list-page .avatar__photo {
+  @apply !rounded-xl h-12 w-12;
+}
+
+.blog-post-page #__blog-post-container {
+  @apply mt-8 lg:mt-8;
+}
+
+.blog-post-page header {
+  @apply pb-4 border-solid border-0 border-b border-gray-200 dark:border-gray-700;
+}

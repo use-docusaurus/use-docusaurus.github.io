@@ -4,9 +4,7 @@
  * work well for content-centric websites.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "../styles/tailwind.css";
 
 /* You can override the default Infima variables here. */
 :root {
@@ -19,13 +17,14 @@
   --ifm-color-primary-lightest: #4dc0f4;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: 'Inter';
-  --ifm-heading-font-family: 'Inter';
-  --ifm-navbar-height: 4.75rem;
+  --ifm-font-family-base: "Inter";
+  --ifm-heading-font-family: "Inter";
+  --ifm-link-color: var(--ifm-font-base-color);
+  /* --ifm-navbar-height: 4.75rem; */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --ifm-color-primary: #0ea5e9;
   --ifm-color-primary-dark: #0d95d2;
   --ifm-color-primary-darker: #0c8cc6;
@@ -36,97 +35,23 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* Add mx-auto to container */
-.container {
-  @apply mx-auto;
-}
+/* @import "styles/docs-sidebar.css"; */
 
-/* Increase navbar height, and make it a container */
+@import "../styles/navbar.css";
+@import "../styles/docs-wrapper.css";
+@import "../styles/docs-sidebar.css";
+@import "../styles/blog-wrapper.css";
 
-.navbar {
-  /* @apply twp h-14 md:h-20; */
-}
-
-.navbar__inner {
-  @apply container;
-}
-
-/* --------Docs - Start---------- */
-
-/* Docs - Make it a container*/
-.docs-wrapper .main-wrapper {
-  @apply container;
-}
-
-.docs-wrapper #__docusaurus {
-  @apply bg-gray-50 dark:bg-transparent;
-}
-
-/* Docs - Remove left side padding */
-.docs-wrapper .theme-doc-sidebar-container .menu {
-  @apply lg:!pl-0 lg:!pt-[4.75rem];
-}
-
-.docs-wrapper [class*='sidebarLogo_'] {
-  @apply !mx-0;
-}
-
-/* If we have hideOnScroll: true */
-.docs-wrapper [class*='docMainContainer_'] {
-  @apply bg-white dark:bg-transparent;
-}
-
-.docs-wrapper [class*='docItemContainer_'],
-.docs-wrapper [class*='generatedIndexPage_'] {
-  @apply lg:!pt-[3.75rem] lg:pl-8 lg:pr-0 xl:px-12;
-}
-
-.docs-wrapper .table-of-contents {
-  @apply lg:!pt-[3.75rem];
-}
-
-.docs-wrapper .table-of-contents__left-border {
-  @apply border-l-0;
-}
-
-.docs-wrapper .menu__link {
-  @apply text-sm !cursor-pointer rounded-none;
-}
-
-.docs-wrapper .menu__link--active {
-  @apply font-semibold;
-}
-
-.docs-wrapper .menu__list-item:not(:first-child),
+/* .docs-wrapper .menu__list-item:not(:first-child),
 .menu__list .menu__list {
   @apply !mt-4;
-}
+} */
 
-.docs-wrapper article h1,
-.docs-wrapper h1[class*='title_'] {
-  @apply !text-4xl;
-}
-
-.docs-wrapper article h2 {
-  @apply text-2xl;
-}
-
-.docs-wrapper article h3 {
-  @apply text-xl;
-}
-
-.docs-wrapper .theme-doc-sidebar-container {
+/* .docs-wrapper .theme-doc-sidebar-container {
   @apply border-r-0;
-}
-
-/* --------Docs - End---------- */
-
-/* --------Blog---------- */
+} */
 
 /* Blog - Remove padding of container */
-.blog-wrapper .main-wrapper > div {
-  @apply md:px-0;
-}
 
 .hero--primary {
   --ifm-hero-background-color: var(--ifm-background-color);
