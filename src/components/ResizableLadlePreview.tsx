@@ -5,11 +5,21 @@ import clsx from "clsx";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-let paddingMap = { none: "", md: "p-8" };
+let paddingMap = { none: "", md: "p-0" };
+
+const getLadleUrl = (story) => {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  if (isDevelopment) {
+    return `http://localhost:8080/ladle?story=${story}&mode=preview`;
+  }
+  return `/ladle/?story=${story}&mode=preview`;
+};
 
 function Well({
   as: Component = "div",
   story,
+  height,
+  iframePointerEvents,
   style,
   padding,
   p = "md",
@@ -23,6 +33,7 @@ function Well({
 }) {
   let paddingKey = padding ?? p;
   let paddingClassName = paddingMap[paddingKey];
+  const iframeUrl = getLadleUrl(story);
 
   if (paddingClassName === undefined) {
     throw Error(`Invalid padding value: ${JSON.stringify(paddingKey)}`);
@@ -30,33 +41,6 @@ function Well({
 
   return (
     <div className={containerClassName}>
-      {hint !== undefined && (
-        <div className={clsx(hintClassName, "not-prose mb-4")}>
-          <div className="flex space-x-2">
-            <svg
-              className="flex-none w-5 h-5"
-              viewBox="0 0 20 20"
-              fill="none"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="m9.813 9.25.346-5.138a1.276 1.276 0 0 0-2.54-.235L6.75 11.25 5.147 9.327a1.605 1.605 0 0 0-2.388-.085.018.018 0 0 0-.004.019l1.98 4.87a5 5 0 0 0 4.631 3.119h3.885a4 4 0 0 0 4-4v-1a3 3 0 0 0-3-3H9.813Z"
-                className="stroke-slate-400 dark:stroke-slate-300"
-              />
-              <path
-                d="M3 5s.35-.47 1.25-.828m9.516-.422c2.078.593 3.484 1.5 3.484 1.5"
-                className="stroke-slate-400 dark:stroke-sky-400"
-              />
-            </svg>
-            <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
-              {hint}
-            </p>
-          </div>
-        </div>
-      )}
       <Component
         style={style}
         className={clsx(
@@ -74,20 +58,24 @@ function Well({
         />
         <div
           className={clsx(
-            "relative rounded-xl overflow-auto",
+            "relative border rounded-xl border-gray-200 border-solid dark:border-gray-700 !overflow-hidden",
             paddingClassName,
             className
           )}
         >
-          <iframe
-            src={`/ladle/?mode=preview&story=${story}`}
-            className="w-full border border-gray-200 rounded-l"
+          <motion.iframe
+            // src={`/ladle/?mode=preview&story=${story}`}
+            className="w-full"
+            src={iframeUrl}
+            height={height}
+            allow="cross-origin-isolated"
+            style={{ pointerEvents: iframePointerEvents }}
           />
         </div>
 
         <div
           className={clsx(
-            "absolute inset-0 pointer-events-none border border-black/5 rounded-xl",
+            "absolute inset-0 pointer-events-none border border-black/5",
             !lightOnly && "dark:border-white/5"
           )}
         />
@@ -96,11 +84,12 @@ function Well({
   );
 }
 
-const ResizableLadlePreview = ({ story, initialWidth = 800, width = 800 }) => {
+const ResizableLadlePreview = ({ story, initialWidth = 800, height = 720 }) => {
   let containerRef = useRef();
   let x = useMotionValue(0);
   let constraintsRef = useRef();
   let handleRef = useRef();
+  let iframePointerEvents = useMotionValue("auto");
 
   useEffect(() => {
     const observer = new window.ResizeObserver(() => {
@@ -117,7 +106,7 @@ const ResizableLadlePreview = ({ story, initialWidth = 800, width = 800 }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative twp">
       {/* <iframe
         src={`/ladle/?mode=preview&story=${story}`}
         className="w-full border border-gray-200 rounded-l"
@@ -128,7 +117,8 @@ const ResizableLadlePreview = ({ story, initialWidth = 800, width = 800 }) => {
         as={motion.div}
         style={{ marginRight: useTransform(x, (x) => -x) }}
         story={story}
-        width={width}
+        height={height}
+        iframePointerEvents={iframePointerEvents}
       />
 
       <div
@@ -142,16 +132,23 @@ const ResizableLadlePreview = ({ story, initialWidth = 800, width = 800 }) => {
           dragMomentum={false}
           dragElastic={0}
           dragConstraints={constraintsRef}
-          className="absolute right-0 hidden p-2 -mt-6 pointer-events-auto top-1/2 md:block cursor-ew-resize"
+          className="absolute right-0 inset-y-0 hidden p-3 pointer-events-auto  md:block cursor-ew-resize"
           style={{ x }}
           onDragStart={() => {
             document.documentElement.classList.add("dragging-ew");
+            iframePointerEvents.set("none");
           }}
           onDragEnd={() => {
             document.documentElement.classList.remove("dragging-ew");
+            iframePointerEvents.set("auto");
           }}
         >
-          <div className="w-1.5 h-8 bg-slate-500/60 rounded-full" />
+          <div
+            className="absolute top-1/2 w-1.5 h-8 bg-slate-500/60 rounded-full -translate-x-1/2 left-1/2"
+            style={{
+              transform: "translateX(-3px)",
+            }}
+          />
         </motion.div>
       </div>
     </div>
