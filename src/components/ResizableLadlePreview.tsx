@@ -1,52 +1,158 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
+import { motion, useTransform, useMotionValue } from "framer-motion";
+import { useEffect, useRef } from "react";
 
-const ResizableLadlePreview = ({ story, initialWidth = 800 }) => {
-  const [width, setWidth] = useState(initialWidth);
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartX = useRef(0);
-  const startWidth = useRef(width);
+let paddingMap = { none: "", md: "p-8" };
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    dragStartX.current = e.clientX;
-    startWidth.current = width;
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
+function Well({
+  as: Component = "div",
+  story,
+  style,
+  padding,
+  p = "md",
+  className,
+  containerClassName,
+  html,
+  children,
+  hint,
+  hintClassName,
+  lightOnly = false,
+}) {
+  let paddingKey = padding ?? p;
+  let paddingClassName = paddingMap[paddingKey];
 
-  const handleMouseMove = (e) => {
-    if (isDragging) {
-      const deltaX = e.clientX - dragStartX.current;
-      const newWidth = Math.max(320, startWidth.current + deltaX); // 320px as minimum width
-      setWidth(newWidth);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-  };
+  if (paddingClassName === undefined) {
+    throw Error(`Invalid padding value: ${JSON.stringify(paddingKey)}`);
+  }
 
   return (
-    <div className="relative" style={{ width: `${width}px` }}>
-      <iframe
+    <div className={containerClassName}>
+      {hint !== undefined && (
+        <div className={clsx(hintClassName, "not-prose mb-4")}>
+          <div className="flex space-x-2">
+            <svg
+              className="flex-none w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="none"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="m9.813 9.25.346-5.138a1.276 1.276 0 0 0-2.54-.235L6.75 11.25 5.147 9.327a1.605 1.605 0 0 0-2.388-.085.018.018 0 0 0-.004.019l1.98 4.87a5 5 0 0 0 4.631 3.119h3.885a4 4 0 0 0 4-4v-1a3 3 0 0 0-3-3H9.813Z"
+                className="stroke-slate-400 dark:stroke-slate-300"
+              />
+              <path
+                d="M3 5s.35-.47 1.25-.828m9.516-.422c2.078.593 3.484 1.5 3.484 1.5"
+                className="stroke-slate-400 dark:stroke-sky-400"
+              />
+            </svg>
+            <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+              {hint}
+            </p>
+          </div>
+        </div>
+      )}
+      <Component
+        style={style}
+        className={clsx(
+          "not-prose relative bg-slate-50 rounded-xl overflow-hidden",
+          !lightOnly && "dark:bg-slate-800/25"
+        )}
+      >
+        <div
+          style={{ backgroundPosition: "10px 10px" }}
+          className={clsx(
+            "absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]",
+            !lightOnly &&
+              "dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"
+          )}
+        />
+        <div
+          className={clsx(
+            "relative rounded-xl overflow-auto",
+            paddingClassName,
+            className
+          )}
+        >
+          <iframe
+            src={`/ladle/?mode=preview&story=${story}`}
+            className="w-full border border-gray-200 rounded-l"
+          />
+        </div>
+
+        <div
+          className={clsx(
+            "absolute inset-0 pointer-events-none border border-black/5 rounded-xl",
+            !lightOnly && "dark:border-white/5"
+          )}
+        />
+      </Component>
+    </div>
+  );
+}
+
+const ResizableLadlePreview = ({ story, initialWidth = 800, width = 800 }) => {
+  let containerRef = useRef();
+  let x = useMotionValue(0);
+  let constraintsRef = useRef();
+  let handleRef = useRef();
+
+  useEffect(() => {
+    const observer = new window.ResizeObserver(() => {
+      x.set(0);
+    });
+    observer.observe(containerRef.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    handleRef.current.onselectstart = () => false;
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative">
+      {/* <iframe
         src={`/ladle/?mode=preview&story=${story}`}
         className="w-full border border-gray-200 rounded-l"
         height="400"
+      /> */}
+
+      <Well
+        as={motion.div}
+        style={{ marginRight: useTransform(x, (x) => -x) }}
+        story={story}
+        width={width}
       />
+
       <div
-        className={`absolute top-0 right-0 w-2 h-full bg-gray-100 border-y border-r border-gray-200 rounded-r cursor-ew-resize hover:bg-gray-200 flex items-center justify-center ${
-          isDragging ? "bg-gray-300" : ""
-        }`}
-        onMouseDown={handleMouseDown}
+        ref={constraintsRef}
+        className="absolute inset-y-0 right-[-1.375rem] left-80 ml-4 pointer-events-none"
       >
-        <div className="h-8 w-1 bg-gray-300 rounded-full" />
-      </div>
-      <div className="absolute top-4 right-4 bg-white px-2 py-1 text-sm text-gray-500 rounded border">
-        {Math.round(width)}px
+        <motion.div
+          ref={handleRef}
+          drag="x"
+          _dragX={x}
+          dragMomentum={false}
+          dragElastic={0}
+          dragConstraints={constraintsRef}
+          className="absolute right-0 hidden p-2 -mt-6 pointer-events-auto top-1/2 md:block cursor-ew-resize"
+          style={{ x }}
+          onDragStart={() => {
+            document.documentElement.classList.add("dragging-ew");
+          }}
+          onDragEnd={() => {
+            document.documentElement.classList.remove("dragging-ew");
+          }}
+        >
+          <div className="w-1.5 h-8 bg-slate-500/60 rounded-full" />
+        </motion.div>
       </div>
     </div>
   );
