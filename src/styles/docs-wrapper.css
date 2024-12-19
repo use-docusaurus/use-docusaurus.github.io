@@ -1,5 +1,5 @@
 .docs-wrapper .main-wrapper {
-  @apply container mx-auto;
+  @apply container md:px-16 mx-auto;
 }
 
 .docs-wrapper [class*="docMainContainer_"] {
@@ -15,9 +15,9 @@
   @apply lg:!pt-1;
 }
 
-.docs-wrapper header h1 {
+/* .docs-wrapper header h1 {
   @apply pb-4 border-solid border-0 border-b border-gray-200 dark:border-gray-700;
-}
+} */
 
 .docs-wrapper article h1,
 .docs-wrapper h1[class*="title_"] {
@@ -30,4 +30,14 @@
 
 .docs-wrapper article h3 {
   @apply text-xl;
+}
+
+.docs-wrapper {
+  .breadcrumbs__link:any-link:hover,
+  .breadcrumbs__item--active .breadcrumbs__link {
+    @apply !bg-transparent;
+  }
+  .breadcrumbs__link {
+    @apply p-0;
+  }
 }

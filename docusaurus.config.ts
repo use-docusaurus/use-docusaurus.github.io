@@ -40,7 +40,7 @@ const config: Config = {
   },
 
   stylesheets: [
-    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lexend:wght@100..900&display=swap",
+    "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@300;400;500;600;700;800;900&family=Lexend:wght@100..900&display=swap",
   ],
 
   presets: [
@@ -48,7 +48,7 @@ const config: Config = {
       "classic",
       {
         docs: {
-          breadcrumbs: false,
+          breadcrumbs: true,
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -79,6 +79,11 @@ const config: Config = {
   ],
 
   themeConfig: {
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {

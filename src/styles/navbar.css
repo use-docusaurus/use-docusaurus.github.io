@@ -1,3 +1,7 @@
 .navbar__inner {
-  @apply container mx-auto;
+  @apply container md:px-16 mx-auto;
+}
+
+.footer > div {
+  @apply container md:px-16 mx-auto;
 }

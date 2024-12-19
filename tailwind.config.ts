@@ -1,14 +1,14 @@
-import {type Config} from 'tailwindcss';
+import { type Config } from "tailwindcss";
 import {
   scopedPreflightStyles,
   isolateInsideOfContainer,
-} from 'tailwindcss-scoped-preflight';
+} from "tailwindcss-scoped-preflight";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.html', './src/**/*.js', './src/**/*.tsx', './*.ts'],
-  corePlugins: {container: true},
-  darkMode: ['class', '[data-theme="dark"]'],
+  content: ["./src/**/*.html", "./src/**/*.js", "./src/**/*.tsx", "./*.ts"],
+  corePlugins: { container: true },
+  darkMode: ["class", '[data-theme="dark"]'],
   important: true,
   theme: {
     extend: {
@@ -16,10 +16,10 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    require("@tailwindcss/typography"),
     scopedPreflightStyles({
-      isolationStrategy: isolateInsideOfContainer('.twp', {
-        except: '.no-twp', // optional, to exclude some elements under .twp from being preflighted, like external markup
+      isolationStrategy: isolateInsideOfContainer(".twp", {
+        except: ".no-twp", // optional, to exclude some elements under .twp from being preflighted, like external markup
       }),
     }),
   ],
