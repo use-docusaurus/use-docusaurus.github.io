@@ -56,3 +56,7 @@
   --ifm-hero-background-color: var(--ifm-background-color);
   --ifm-hero-text-color: var(--ifm-font-color-base);
 }
+
+.main-wrapper {
+  @apply container md:px-16 mx-auto;
+}
