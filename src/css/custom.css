@@ -45,10 +45,12 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-@import "../styles/navbar.css";
-@import "../styles/docs-wrapper.css";
+@import "../styles/alignment.css";
+@import "../styles/docs-page.css";
 @import "../styles/docs-sidebar.css";
-@import "../styles/blog-wrapper.css";
+@import "../styles/blog.css";
+@import "../styles/font-sizes.css";
+@import "../styles/avatar.css";
 
 /* Blog - Remove padding of container */
 
@@ -57,6 +59,6 @@
   --ifm-hero-text-color: var(--ifm-font-color-base);
 }
 
-.main-wrapper {
-  @apply container md:px-16 mx-auto;
-}
+/* footer.row {
+  @apply items-center;
+} */

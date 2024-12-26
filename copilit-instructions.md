@@ -2,7 +2,7 @@
 
 Please generate commit messages in the following format:
 
-- Generate instruction for each file in the commit changes
+- Generate instruction for each file in the file changes
 - Type: <type> (e.g., feat, fix, docs), Always include type, It's mandatory
 - Short description: A concise summary of the change
 - Body: Additional details if necessary, wrapped to 72 characters, add new line after short description

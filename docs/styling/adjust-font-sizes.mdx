@@ -1,0 +1,20 @@
+---
+sidebar_position: 7
+---
+
+import FontSizesCSS from "!!raw-loader!@site/src/styles/font-sizes.css?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Adjust Font Sizes
+
+### Add font-sizes.css
+
+<CodeBlock title="src/styles/font-sizes.css" language="css">
+  {FontSizesCSS}
+</CodeBlock>
+
+### Add font-sizes.css to custom.css
+
+```css title="src/css/custom.css"
+@import "../styles/font-sizes.css";
+```

@@ -1,7 +1,0 @@
-.navbar__inner {
-  @apply container md:px-16 mx-auto;
-}
-
-.footer > div {
-  @apply container md:px-16 mx-auto;
-}
