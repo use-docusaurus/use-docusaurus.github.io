@@ -43,3 +43,16 @@ jobs:
         with:
           source-dir: ./build/
 ```
+
+### Change config to set correct base url
+
+```ts title="docusaurus.config.ts"
+const BASE_URL =
+  process.env.PR_NUMBER !== undefined
+    ? `/pr-preview/pr-${process.env.PR_NUMBER}/`
+    : "/";
+
+const config: Config = {
+  baseUrl: BASE_URL,
+};
+```
