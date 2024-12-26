@@ -62,3 +62,8 @@
 /* footer.row {
   @apply items-center;
 } */
+
+.navbar__link--active,
+a.navbar__link--active {
+  @apply font-semibold;
+}

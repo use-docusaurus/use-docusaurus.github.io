@@ -55,6 +55,6 @@
   }
 
   .menu__link--active {
-    @apply md:!border-l-gray-600 md:dark:!border-l-gray-200;
+    @apply md:!border-l-gray-600 md:dark:!border-l-gray-200 font-medium;
   }
 }
