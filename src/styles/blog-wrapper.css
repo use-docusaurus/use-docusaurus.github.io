@@ -4,7 +4,7 @@
 - blog authors page
 - blog tags page */
 
-/* We are making all avatar photos square rounded */
+/* Make all avatar photos square rounded */
 
 .blog-wrapper .main-wrapper {
   @apply container md:px-16 mx-auto;
