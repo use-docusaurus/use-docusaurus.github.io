@@ -15,6 +15,17 @@
       "filePath": "src/stories/hello.stories.tsx",
       "namedExport": "World",
       "meta": {}
+    },
+    "page--world": {
+      "name": "World",
+      "levels": [
+        "Page"
+      ],
+      "locStart": 56,
+      "locEnd": 364,
+      "filePath": "src/stories/page.stories.tsx",
+      "namedExport": "World",
+      "meta": {}
     }
   }
 }
