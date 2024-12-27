@@ -1,1 +1,0 @@
-import{j as e}from"./index-D0029_o2.js";const o=()=>e.jsx("p",{className:"bg-red-200 md:bg-blue-200 m-6 p-6",children:"Hello World"});typeof window<"u"&&window.document&&window.document.createElement&&document.documentElement.setAttribute("data-storyloaded","");export{o as World};
