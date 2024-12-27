@@ -56,6 +56,15 @@
 
 .blog-post-page {
   /* We need col--10 here */
+
+  @media (max-width: 996px) {
+    .col {
+      --ifm-col-width: 100%;
+      flex-basis: var(--ifm-col-width);
+      margin-left: 0;
+    }
+  }
+
   main {
     @apply md:ml-0 md:pl-0;
     --ifm-col-width: calc(10 / 12 * 100%);
