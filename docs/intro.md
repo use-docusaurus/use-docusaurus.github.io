@@ -1,47 +1,22 @@
 ---
 sidebar_position: 1
+title: Intro
 ---
 
-# Tutorial Intro
+# Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+This documentation is an opiniated to customize Docusaurus's default installation. First install Docusaurus and then follow this documentation. I also call Docusaurus as Docu (so that I can type less). The very site you are reading is customized using this documentation.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+Get started by **creating a new docusaurus site** using the classic template. You can follow official [Docusaurus documentation](https://docusaurus.io/docs) to create a new site.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### How to follow this documentation
 
-### What you'll need
+Ideally if all the changes could have been a plugin which you can install and configure, it would have been ideal. But the changes are wide-spread and moreover the recent trend of copy-pasting code seems to be giving more control to the developer. So, this documentation is a step-by-step guide to customize Docusaurus.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### Why did I do this?
 
-## Generate a new site
+Firstly, I was using Docusaurus heavily for creating multiple sites - for me and for clients. And later customizing it using Tailwind. And installing Tailwind itself is not straight forward in Docu. And also customizing can be done with CSS or Swizzling layouts.
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+I preferred to style as much as possible with CSS, and I will mention if anywhere Swizzling is required. I also wanted to have a single source of truth for all the customizations I did. So, I created this documentation.

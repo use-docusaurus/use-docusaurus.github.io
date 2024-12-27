@@ -10,8 +10,8 @@ const BASE_URL =
     : "/";
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Use Docusaurus",
+  tagline: "Docusaurus is cool",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -40,7 +40,7 @@ const config: Config = {
   },
 
   stylesheets: [
-    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lexend:wght@100..900&display=swap",
+    "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@300;400;500;600;700;800;900&family=Lexend:wght@100..900&display=swap",
   ],
 
   presets: [
@@ -48,7 +48,7 @@ const config: Config = {
       "classic",
       {
         docs: {
-          breadcrumbs: false,
+          breadcrumbs: true,
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -79,10 +79,15 @@ const config: Config = {
   ],
 
   themeConfig: {
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "My Site",
+      title: "Use Docu",
       logo: {
         alt: "My Site Logo",
         src: "img/logo.svg",
@@ -90,13 +95,13 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          sidebarId: "docSidebar",
           position: "left",
-          label: "Tutorial",
+          label: "Docs",
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/use-docusaurus/use-docusaurus.github.io",
           label: "GitHub",
           position: "right",
         },
@@ -109,7 +114,7 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
+              label: "Docs",
               to: "/docs/intro",
             },
           ],

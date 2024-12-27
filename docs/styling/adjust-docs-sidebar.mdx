@@ -1,0 +1,20 @@
+---
+sidebar_position: 5
+---
+
+import DocsSidebarCSS from "!!raw-loader!@site/src/styles/docs-sidebar.css?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Adjust Docs Sidebar
+
+### Add docs-sidebar.css
+
+<CodeBlock title="src/styles/docs-sidebar.css" language="css">
+  {DocsSidebarCSS}
+</CodeBlock>
+
+### Add docs-sidebar.css to custom.css
+
+```css title="src/css/custom.css"
+@import "../styles/docs-sidebar.css";
+```

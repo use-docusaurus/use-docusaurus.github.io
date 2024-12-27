@@ -1,0 +1,31 @@
+---
+sidebar_position: 3
+---
+
+import AlignmentCSS from "!!raw-loader!@site/src/styles/alignment.css?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Adjust Alignment
+
+Docusaurus uses full width of window, which makes it look too wide for me. I limited the width by making following changes.
+
+### Doc Sidebar Width
+
+```css title="src/css/custom.css"
+:root {
+  --doc-sidebar-width: 250px !important;
+  --doc-sidebar-hidden-width: 25px !important;
+}
+```
+
+### Add alignment.css
+
+<CodeBlock title="src/styles/alignment.css" language="css">
+  {AlignmentCSS}
+</CodeBlock>
+
+### Add alignment.css to custom.css
+
+```css title="src/css/custom.css"
+@import "../styles/alignment.css";
+```

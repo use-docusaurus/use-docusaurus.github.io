@@ -1,0 +1,20 @@
+---
+sidebar_position: 8
+---
+
+import AvatarCSS from "!!raw-loader!@site/src/styles/avatar.css?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Adjust Avatar
+
+### Add avatar.css
+
+<CodeBlock title="src/styles/avatar.css" language="css">
+  {AvatarCSS}
+</CodeBlock>
+
+### Add avatar.css to custom.css
+
+```css title="src/css/custom.css"
+@import "../styles/avatar.css";
+```

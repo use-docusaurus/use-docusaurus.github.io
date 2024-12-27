@@ -9,16 +9,11 @@ module.exports = {
   content: ["./src/**/*.html", "./src/**/*.js", "./src/**/*.tsx", "./*.ts"],
   darkMode: ["class", '[data-theme="dark"]'],
   important: true,
-  theme: {
-    extend: {
-      colors: {},
-    },
-  },
   plugins: [
     require("@tailwindcss/typography"),
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".twp", {
-        except: ".no-twp", // optional, to exclude some elements under .twp from being preflighted, like external markup
+        except: ".no-twp",
       }),
     }),
   ],

@@ -1,0 +1,20 @@
+---
+sidebar_position: 6
+---
+
+import BlogCSS from "!!raw-loader!@site/src/styles/blog.css?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Adjust Blog
+
+### Add blog.css
+
+<CodeBlock title="src/styles/blog.css" language="css">
+  {BlogCSS}
+</CodeBlock>
+
+### Add blog.css to custom.css
+
+```css title="src/css/custom.css"
+@import "../styles/blog.css";
+```

@@ -1,0 +1,142 @@
+---
+sidebar_position: 1
+title: Install Tailwind CSS
+---
+
+# Install Tailwind CSS
+
+We have to be careful while installing Tailwind because it can override the default styles of Docusaurus because of preflight. We will install Tailwind in a way that it doesn't affect the default styles.
+
+## Tailwind
+
+### Install Tailwind
+
+```bash
+npm install -D tailwindcss postcss autoprefixer tailwindcss-scoped-preflight @tailwindcss/typography
+```
+
+### Create Tailwind Config
+
+```bash
+npx tailwindcss init
+```
+
+### Update Tailwind Config
+
+```ts title="tailwind.config.ts"
+import { type Config } from "tailwindcss";
+import {
+  scopedPreflightStyles,
+  isolateInsideOfContainer,
+} from "tailwindcss-scoped-preflight";
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.html", "./src/**/*.js", "./src/**/*.tsx", "./*.ts"],
+  darkMode: ["class", '[data-theme="dark"]'],
+  important: true,
+  plugins: [
+    require("@tailwindcss/typography"),
+    scopedPreflightStyles({
+      isolationStrategy: isolateInsideOfContainer(".twp", {
+        except: ".no-twp",
+      }),
+    }),
+  ],
+} satisfies Config;
+```
+
+### Add Tailwind to CSS file
+
+Make sure you following **two** changes
+
+```css title="src/styles/tailwind.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+```css title="src/css/custom.css"
+@import "../styles/tailwind.css";
+```
+
+## Tailwind Plugin
+
+### Create plugin file
+
+Create a file at `plugins/docusaurus-tailwindcss-loader/index.js`:
+
+```js title="plugins/docusaurus-tailwindcss-loader/index.js"
+module.exports = function (context, options) {
+  return {
+    name: "postcss-tailwindcss-loader",
+    // https://github.com/facebook/docusaurus/issues/2961
+    configurePostCss(postcssOptions) {
+      postcssOptions.plugins.push(require("tailwindcss"));
+      postcssOptions.plugins.push(require("autoprefixer"));
+      return postcssOptions;
+    },
+  };
+};
+```
+
+### Add plugin to `package.json`
+
+```js title="package.json"
+  "devDependencies": {
+    "docusaurus-tailwindcss-loader": "file:plugins/docusaurus-tailwindcss-loader",
+  },
+```
+
+### Add plugin to `docusaurus.config.js`
+
+```js title="docusaurus.config.js"
+plugins: ["docusaurus-tailwindcss-loader"],
+```
+
+## Testing Tailwind
+
+### Add a test page
+
+```tsx title="src/pages/tailwind.tsx"
+import clsx from "clsx";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+
+export default function Home(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  return (
+    <Layout
+      title={`Hello from ${siteConfig.title}`}
+      description="Description will go into a meta tag in <head />"
+    >
+      <div className="bg-gray-50 p-10 twp">
+        <div className="mx-auto max-w-7xl py-12 sm:px-6 lg:px-8 bg-white">
+          <div className="mx-auto max-w-4xl">
+            <div className="flex flex-col gap-4">
+              <p>Just some content, Tailwind will work here</p>
+              <ul className="p-2 bg-blue-200 list-none">
+                <li>Item 1</li>
+                <li>Item 2</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+```
+
+### Test page
+
+- Visit `/tailwind` page to check if Tailwind is working
+- Check Homepage, it should not be affected by Tailwind Preflight
+
+## Done!
+
+:::info
+
+At this point you should have Tailwind CSS installed and configured in your Docusaurus project.
+
+:::

@@ -6,22 +6,27 @@
 
 @import "../styles/tailwind.css";
 
+:root {
+  --doc-sidebar-width: 250px !important;
+  --doc-sidebar-hidden-width: 25px !important;
+}
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #0ea5e9;
-  --ifm-color-primary-dark: #0d95d2;
-  --ifm-color-primary-darker: #0c8cc6;
-  --ifm-color-primary-darkest: #0a74a3;
-  --ifm-color-primary-light: #1eb0f1;
-  --ifm-color-primary-lighter: #2ab4f2;
-  --ifm-color-primary-lightest: #4dc0f4;
+  --ifm-color-primary: #111827;
+  --ifm-color-primary-dark: #0f1623;
+  --ifm-color-primary-darker: #0e1421;
+  --ifm-color-primary-darkest: #0c111b;
+  --ifm-color-primary-light: #131a2b;
+  --ifm-color-primary-lighter: #141c2d;
+  --ifm-color-primary-lightest: #161f33;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+  --ifm-font-family-base: "Geist", system-ui, -apple-system, Segoe UI, Roboto,
     Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  --ifm-heading-font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+  --ifm-heading-font-family: "Geist", system-ui, -apple-system, Segoe UI, Roboto,
     Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
@@ -30,24 +35,35 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #0ea5e9;
-  --ifm-color-primary-dark: #0d95d2;
-  --ifm-color-primary-darker: #0c8cc6;
-  --ifm-color-primary-darkest: #0a74a3;
-  --ifm-color-primary-light: #1eb0f1;
-  --ifm-color-primary-lighter: #2ab4f2;
-  --ifm-color-primary-lightest: #4dc0f4;
+  --ifm-color-primary: #f9fafb;
+  --ifm-color-primary-dark: #dbe1e7;
+  --ifm-color-primary-darker: #ccd4dd;
+  --ifm-color-primary-darkest: #9fafbf;
+  --ifm-color-primary-light: #ffffff;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-@import "../styles/navbar.css";
-@import "../styles/docs-wrapper.css";
+@import "../styles/alignment.css";
+@import "../styles/docs-page.css";
 @import "../styles/docs-sidebar.css";
-@import "../styles/blog-wrapper.css";
+@import "../styles/blog.css";
+@import "../styles/font-sizes.css";
+@import "../styles/avatar.css";
 
 /* Blog - Remove padding of container */
 
 .hero--primary {
   --ifm-hero-background-color: var(--ifm-background-color);
   --ifm-hero-text-color: var(--ifm-font-color-base);
+}
+
+/* footer.row {
+  @apply items-center;
+} */
+
+.navbar__link--active,
+a.navbar__link--active {
+  @apply font-semibold;
 }
