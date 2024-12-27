@@ -15,7 +15,8 @@
     "ladle:build": "npx ladle build",
     "ladle:serve": "npx ladle serve",
     "ladle:preview": "npx ladle preview",
-    "build": "docusaurus build && npm run ladle:build"
+    "build": "docusaurus build && npm run ladle:build",
+    "start:docu-ladle": "concurrently --kill-others \"npm run start\" \"npm run ladle:serve\""
   },
   "dependencies": {
     "@docusaurus/core": "^3.6.3",
@@ -37,6 +38,7 @@
     "@docusaurus/types": "^3.6.3",
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
     "docusaurus-tailwindcss-loader": "file:plugins/docusaurus-tailwindcss-loader",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",

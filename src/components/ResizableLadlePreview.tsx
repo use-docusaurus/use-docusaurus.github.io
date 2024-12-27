@@ -6,7 +6,7 @@ import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 
-let paddingMap = { none: "", md: "p-0" };
+let paddingMap = { none: "", md: "p-1" };
 
 const getLadleUrl = (story) => {
   const isDevelopment = process.env.NODE_ENV === "development";
@@ -77,7 +77,7 @@ function Well({
       <Component
         style={style}
         className={clsx(
-          "not-prose relative bg-slate-50 rounded-xl overflow-hidden",
+          "not-prose relative bg-slate-50 rounded-sm overflow-hidden",
           !lightOnly && "dark:bg-slate-800/25"
         )}
       >
@@ -91,7 +91,7 @@ function Well({
         />
         <div
           className={clsx(
-            "relative border rounded-xl border-gray-200 border-solid dark:border-gray-700 !overflow-hidden",
+            "relative border rounded-sm border-gray-200 border-dashed dark:border-gray-700 !overflow-hidden",
             paddingClassName,
             className
           )}
