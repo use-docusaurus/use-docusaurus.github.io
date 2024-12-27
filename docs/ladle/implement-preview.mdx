@@ -3,13 +3,38 @@ sidebar_position: 2
 ---
 
 import ResizableLadlePreview from "@site/src/components/ResizableLadlePreview";
+import { BlockViewerView } from "@site/src/components/Resizable/preview";
 import ResizableLadlePreviewCode from "!!raw-loader!@site/src/components/ResizableLadlePreview?raw";
 import HelloWorldStoryCode from "!!raw-loader!@site/src/stories/hello.stories.tsx?raw";
 import CodeBlock from "@theme/CodeBlock";
+import TailwindConfigCode from "!!raw-loader!../../tailwind.config.ts";
+import TailwindCSSCode from "!!raw-loader!@site/src/styles/tailwind.css";
 
 # Resizable Preview
 
 Ladle helps in preview of components. If you are building a component library and you want help showing previews of components, Ladle can help you.
+
+## Configure ShadCN
+
+### Install packages
+
+We are going to use react-resizable-panels and some styling from shadcn
+
+```bash
+npm i tailwindcss-animate clsx tailwind-merge react-resizable-panels lucide-react
+```
+
+### Add CSS Variables to tailwind.CSS
+
+<CodeBlock title="src/styles/tailwind.css" language="css">
+  {TailwindCSSCode}
+</CodeBlock>
+
+### Add ShanCN Variables to tailwind.config
+
+<CodeBlock title="tailwind.config.ts" language="ts">
+  {TailwindConfigCode}
+</CodeBlock>
 
 ## Add ResizableLadlePreview.tsx
 
@@ -48,5 +73,10 @@ import ResizableLadlePreview from "@site/src/components/ResizableLadlePreview";
 
 It should show up like following:
 
+### Unrealistic Example
+
 <ResizableLadlePreview story="hello--world" height={200} />
+
+### Realistic Example
+
 <ResizableLadlePreview story="page--world" height={600} />

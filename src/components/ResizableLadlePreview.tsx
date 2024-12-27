@@ -1,12 +1,53 @@
 "use client";
 
-import React, { useState } from "react";
-import clsx from "clsx";
-import { motion, useTransform, useMotionValue } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { GripVertical } from "lucide-react";
+import * as ResizablePrimitive from "react-resizable-panels";
+import { ImperativePanelHandle } from "react-resizable-panels";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+import * as React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 
-let paddingMap = { none: "", md: "p-2" };
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+const ResizablePanelGroup = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => (
+  <ResizablePrimitive.PanelGroup
+    className={cn(
+      "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
+      className
+    )}
+    {...props}
+  />
+);
+
+const ResizablePanel = ResizablePrimitive.Panel;
+
+const ResizableHandle = ({
+  withHandle,
+  className,
+  ...props
+}: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
+  withHandle?: boolean;
+}) => (
+  <ResizablePrimitive.PanelResizeHandle
+    className={cn(
+      "relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
+      className
+    )}
+    {...props}
+  >
+    {withHandle && (
+      <div className="z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-border">
+        <GripVertical className="h-2.5 w-2.5" />
+      </div>
+    )}
+  </ResizablePrimitive.PanelResizeHandle>
+);
 
 const getLadleUrl = (story) => {
   const isDevelopment = process.env.NODE_ENV === "development";
@@ -16,45 +57,12 @@ const getLadleUrl = (story) => {
   return `/ladle?mode=preview&story=${story}`;
 };
 
-type WellProps = {
-  as?: React.ElementType;
-  story: string;
-  height: number;
-  iframePointerEvents: any;
-  style?: React.CSSProperties;
-  padding?: string;
-  p?: string;
-  className?: string;
-  containerClassName?: string;
-  html?: string;
-  children?: React.ReactNode;
-  hint?: string;
-  hintClassName?: string;
-  lightOnly?: boolean;
-};
+export default function ResizableLadlePreview({ story, height }) {
+  const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
 
-function Well({
-  as: Component = "div",
-  story,
-  height,
-  iframePointerEvents,
-  style,
-  padding,
-  p = "md",
-  className,
-  containerClassName,
-  html,
-  children,
-  hint,
-  hintClassName,
-  lightOnly = false,
-}: WellProps) {
-  let paddingKey = padding ?? p;
-  let paddingClassName = paddingMap[paddingKey];
-  const iframeUrl = getLadleUrl(story);
   const { colorMode, setColorMode } = useColorMode();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const updateIframeTheme = (theme) => {
       const iframe = document.querySelector("iframe");
       if (iframe && iframe.contentDocument) {
@@ -68,120 +76,27 @@ function Well({
     updateIframeTheme(colorMode);
   }, [colorMode]);
 
-  if (paddingClassName === undefined) {
-    throw Error(`Invalid padding value: ${JSON.stringify(paddingKey)}`);
-  }
-
   return (
-    <div className={containerClassName}>
-      <Component
-        style={style}
-        className={clsx(
-          "not-prose relative bg-slate-50 rounded-md overflow-hidden",
-          !lightOnly && "dark:bg-slate-800/25"
-        )}
-      >
-        <div
-          style={{ backgroundPosition: "10px 10px" }}
-          className={clsx(
-            "absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]",
-            !lightOnly &&
-              "dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"
-          )}
-        />
-        <div
-          className={clsx(
-            "relative border rounded-md border-gray-200 border-dashed dark:border-gray-700 !overflow-hidden",
-            paddingClassName,
-            className
-          )}
-        >
-          <motion.iframe
-            id="my-iframe"
-            className="w-full"
-            src={iframeUrl}
-            height={height}
-            allow="cross-origin-isolated"
-            style={{ pointerEvents: iframePointerEvents }}
-          />
-        </div>
-
-        <div
-          className={clsx(
-            "absolute inset-0 pointer-events-none border border-black/5",
-            !lightOnly && "dark:border-white/5"
-          )}
-        />
-      </Component>
-    </div>
-  );
-}
-
-const ResizableLadlePreview = ({ story, initialWidth = 800, height = 720 }) => {
-  let containerRef = useRef();
-  let x = useMotionValue(0);
-  let constraintsRef = useRef();
-  let handleRef = useRef<HTMLDivElement>(null);
-  let iframePointerEvents = useMotionValue("auto");
-
-  useEffect(() => {
-    const observer = new window.ResizeObserver(() => {
-      x.set(0);
-    });
-    observer.observe(containerRef.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (handleRef.current) {
-      handleRef.current.onselectstart = () => false;
-    }
-  }, []);
-
-  return (
-    <div ref={containerRef} className="relative twp">
-      <Well
-        as={motion.div}
-        style={{ marginRight: useTransform(x, (x) => -x) }}
-        story={story}
-        height={height}
-        iframePointerEvents={iframePointerEvents}
-      />
-
-      <div
-        ref={constraintsRef}
-        className="absolute inset-y-0 right-[-1.375rem] left-80 ml-4 pointer-events-none"
-      >
-        <motion.div
-          ref={handleRef}
-          drag="x"
-          _dragX={x}
-          dragMomentum={false}
-          dragElastic={0}
-          dragConstraints={constraintsRef}
-          className="absolute right-0 inset-y-0 hidden p-3 pointer-events-auto  md:block cursor-ew-resize"
-          style={{ x }}
-          onDragStart={() => {
-            document.documentElement.classList.add("dragging-ew");
-            iframePointerEvents.set("none");
-          }}
-          onDragEnd={() => {
-            document.documentElement.classList.remove("dragging-ew");
-            iframePointerEvents.set("auto");
-          }}
-        >
-          <div
-            className="absolute top-1/2 w-1.5 h-8 bg-slate-500/60 rounded-full -translate-x-1/2 left-1/2"
-            style={{
-              transform: "translateX(-3px)",
-            }}
-          />
-        </motion.div>
+    <div className="group-data-[view=code]/block-view-wrapper:hidden md:h-[--height] twp">
+      <div className="grid w-full gap-4">
+        <ResizablePanelGroup direction="horizontal" className="relative z-10">
+          <ResizablePanel
+            ref={resizablePanelRef}
+            className="relative aspect-[4/2.5] rounded-xl border bg-background md:aspect-auto"
+            defaultSize={100}
+            minSize={30}
+          >
+            <iframe
+              allow="cross-origin-isolated"
+              src={getLadleUrl(story)}
+              height={height || 930}
+              className="relative z-20 hidden w-full bg-background md:block"
+            />
+          </ResizablePanel>
+          <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
+          <ResizablePanel defaultSize={0} minSize={0} />
+        </ResizablePanelGroup>
       </div>
     </div>
   );
-};
-
-export default ResizableLadlePreview;
+}
