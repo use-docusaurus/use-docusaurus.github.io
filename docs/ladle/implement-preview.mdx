@@ -11,11 +11,13 @@ import CodeBlock from "@theme/CodeBlock";
 
 Ladle helps in preview of components. If you are building a component library and you want help showing previews of components, Ladle can help you.
 
-### Add ResizableLadlePreview.tsx
+## Add ResizableLadlePreview.tsx
 
 <CodeBlock title="src/components/ResizableLadlePreview.tsx" language="tsx">
   {ResizableLadlePreviewCode}
 </CodeBlock>
+
+## Test Preview
 
 ### Add Hello World Story
 
@@ -23,8 +25,27 @@ Ladle helps in preview of components. If you are building a component library an
   {HelloWorldStoryCode}
 </CodeBlock>
 
+### Run Ladle
+
+For following to work during development. Keep both commands running:
+
+```bash
+npm run start
+```
+
+```bash
+npm run ladle:serve
+```
+
 ### Example Story with Preview
 
-The components loads ladle preview of a story in an iframe which is resizable.
+In any .mdx file of docusaurus add following The components loads ladle preview of a story in an iframe which is resizable.
 
-<ResizableLadlePreview story="hello--world" initialHeight={50} />
+```tsx
+import ResizableLadlePreview from "@site/src/components/ResizableLadlePreview";
+<ResizableLadlePreview story="hello--world" height={200} />;
+```
+
+It should show up like following:
+
+<ResizableLadlePreview story="hello--world" height={200} />

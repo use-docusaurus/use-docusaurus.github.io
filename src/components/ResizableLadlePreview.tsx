@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 let paddingMap = { none: "", md: "p-0" };
 
@@ -12,7 +13,24 @@ const getLadleUrl = (story) => {
   if (isDevelopment) {
     return `http://localhost:61000/ladle?story=${story}&mode=preview`;
   }
-  return `/ladle/?story=${story}&mode=preview`;
+  return `/ladle?mode=preview&story=${story}`;
+};
+
+type WellProps = {
+  as?: React.ElementType;
+  story: string;
+  height: number;
+  iframePointerEvents: any;
+  style?: React.CSSProperties;
+  padding?: string;
+  p?: string;
+  className?: string;
+  containerClassName?: string;
+  html?: string;
+  children?: React.ReactNode;
+  hint?: string;
+  hintClassName?: string;
+  lightOnly?: boolean;
 };
 
 function Well({
@@ -30,10 +48,25 @@ function Well({
   hint,
   hintClassName,
   lightOnly = false,
-}) {
+}: WellProps) {
   let paddingKey = padding ?? p;
   let paddingClassName = paddingMap[paddingKey];
   const iframeUrl = getLadleUrl(story);
+  const { colorMode, setColorMode } = useColorMode();
+
+  useEffect(() => {
+    const updateIframeTheme = (theme) => {
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentDocument) {
+        iframe.contentDocument.documentElement.setAttribute(
+          "data-theme",
+          theme
+        );
+      }
+    };
+
+    updateIframeTheme(colorMode);
+  }, [colorMode]);
 
   if (paddingClassName === undefined) {
     throw Error(`Invalid padding value: ${JSON.stringify(paddingKey)}`);
@@ -64,7 +97,7 @@ function Well({
           )}
         >
           <motion.iframe
-            // src={`/ladle/?mode=preview&story=${story}`}
+            id="my-iframe"
             className="w-full"
             src={iframeUrl}
             height={height}
@@ -88,7 +121,7 @@ const ResizableLadlePreview = ({ story, initialWidth = 800, height = 720 }) => {
   let containerRef = useRef();
   let x = useMotionValue(0);
   let constraintsRef = useRef();
-  let handleRef = useRef();
+  let handleRef = useRef<HTMLDivElement>(null);
   let iframePointerEvents = useMotionValue("auto");
 
   useEffect(() => {
@@ -102,17 +135,13 @@ const ResizableLadlePreview = ({ story, initialWidth = 800, height = 720 }) => {
   }, []);
 
   useEffect(() => {
-    handleRef.current.onselectstart = () => false;
+    if (handleRef.current) {
+      handleRef.current.onselectstart = () => false;
+    }
   }, []);
 
   return (
     <div ref={containerRef} className="relative twp">
-      {/* <iframe
-        src={`/ladle/?mode=preview&story=${story}`}
-        className="w-full border border-gray-200 rounded-l"
-        height="400"
-      /> */}
-
       <Well
         as={motion.div}
         style={{ marginRight: useTransform(x, (x) => -x) }}
