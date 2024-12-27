@@ -14,11 +14,9 @@
   }
 }
 
-.blog-wrapper {
-  /* Reduce the h1 title size on blog detail page */
-  .blog-post-page h1[class*="title_"] {
-    @apply !text-4xl;
-  }
+/* Reduce the h1 title size on blog detail page */
+.blog-post-page h1[class*="title_"] {
+  @apply !text-4xl;
 }
 
 .blog-authors-posts-page,
