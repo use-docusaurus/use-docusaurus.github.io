@@ -1,0 +1,30 @@
+---
+sidebar_position: 2
+---
+
+import ResizableLadlePreview from "@site/src/components/ResizableLadlePreview";
+import ResizableLadlePreviewCode from "!!raw-loader!@site/src/components/ResizableLadlePreview?raw";
+import HelloWorldStoryCode from "!!raw-loader!@site/src/stories/hello.stories.tsx?raw";
+import CodeBlock from "@theme/CodeBlock";
+
+# Resizable Preview
+
+Ladle helps in preview of components. If you are building a component library and you want help showing previews of components, Ladle can help you.
+
+### Add ResizableLadlePreview.tsx
+
+<CodeBlock title="src/components/ResizableLadlePreview.tsx" language="tsx">
+  {ResizableLadlePreviewCode}
+</CodeBlock>
+
+### Add Hello World Story
+
+<CodeBlock title="src/stories/hello.stories.tsx" language="tsx">
+  {HelloWorldStoryCode}
+</CodeBlock>
+
+### Example Story with Preview
+
+The components loads ladle preview of a story in an iframe which is resizable.
+
+<ResizableLadlePreview story="hello--world" initialHeight={200} />

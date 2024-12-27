@@ -1,0 +1,76 @@
+---
+sidebar_position: 1
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import PostCssConfigCode from "!!raw-loader!../../postcss.config.js";
+import LadleComponentsCode from "!!raw-loader!../../.ladle/components.tsx";
+import LadleStylesCode from "!!raw-loader!../../.ladle/styles.css";
+
+# Integrate Ladle
+
+Ladle helps in preview of components. If you are building a component library and you want help showing previews of components, Ladle can help you.
+
+## Configure Ladle
+
+When we build docu it usually makes a `build` folder. We can configure Ladle to make a `ladle` folder inside the `build` folder.
+
+### Install Ladle
+
+```bash
+npm install @ladle/react framer-motion
+```
+
+### Add Ladle Commands to Scripts
+
+```json title="package.json"
+"scripts": {
+    "ladle:build": "npx ladle build",
+    "ladle:serve": "npx ladle serve",
+    "ladle:preview": "npx ladle preview"
+}
+```
+
+### Add Ladle Config
+
+```json title=".ladle/config.mjs"
+export default {
+  outDir: "build/ladle",
+  base: "/ladle",
+  addons: {
+    mode: {
+      enabled: true,
+      defaultState: "preview",
+    },
+  },
+};
+```
+
+### Preserving Ladle & Docu build
+
+```json title="package.json"
+"scripts": {
+    // "build": "docusaurus build",
+    "build": "docusaurus build && npm run ladle:build",
+}
+```
+
+## Implement Tailwind
+
+### Add styles.css
+
+<CodeBlock title=".ladle/styles.css" language="css">
+  {LadleStylesCode}
+</CodeBlock>
+
+### Add components.tsx
+
+<CodeBlock title=".ladle/components.tsx" language="tsx">
+  {LadleComponentsCode}
+</CodeBlock>
+
+### Add postcss
+
+<CodeBlock title="postcss.config.js" language="js">
+  {PostCssConfigCode}
+</CodeBlock>
