@@ -17,8 +17,14 @@ When we build docu it usually makes a `build` folder. We can configure Ladle to 
 
 ### Install Ladle
 
+Run **both** commands:
+
 ```bash
 npm install @ladle/react framer-motion
+```
+
+```bash
+npm i -D concurrently
 ```
 
 ### Add Ladle Commands to Scripts
@@ -27,7 +33,8 @@ npm install @ladle/react framer-motion
 "scripts": {
     "ladle:build": "npx ladle build",
     "ladle:serve": "npx ladle serve",
-    "ladle:preview": "npx ladle preview"
+    "ladle:preview": "npx ladle preview",
+    "start:docu-ladle": "concurrently --kill-others \"npm run start\" \"npm run ladle:serve\""
 }
 ```
 
