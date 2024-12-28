@@ -10,8 +10,9 @@ const BASE_URL =
     : "/";
 
 const config: Config = {
-  title: "Docusaurus Customized to document Component Libraries, SDKs and more",
-  tagline: "Docusaurus is great to build static blogs and docs.",
+  title: "Docusaurus Customized for Blogs, Component Libraries, SDKs and more",
+  tagline:
+    "Docusaurus is great to build static blogs and docs already. Styling it might be want is throwing you off from using it. This template is for you.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
