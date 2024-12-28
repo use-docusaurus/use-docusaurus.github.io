@@ -53,6 +53,14 @@
   #__blog-post-container {
     @apply mt-8 lg:mt-8;
   }
+
+  .table-of-contents {
+    @apply lg:!pt-1;
+  }
+
+  .table-of-contents__left-border {
+    @apply border-0;
+  }
 }
 
 /* Start -- Following are required only if blogSidebarCount is 0 */
