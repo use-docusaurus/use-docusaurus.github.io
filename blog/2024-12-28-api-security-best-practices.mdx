@@ -1,0 +1,85 @@
+---
+slug: api-security-best-practices
+title: API Security Best Practices
+description: Essential security practices for building and maintaining secure APIs
+date: 2024-12-28
+tags: [api, security, backend, web-development]
+authors: [rjvim]
+---
+
+Securing your APIs is crucial in modern web development. Learn essential practices to protect your endpoints and user data from common security threats.
+
+{/* truncate */}
+
+## Authentication Strategies
+
+Implement robust authentication using JWT tokens:
+
+```javascript
+const jwt = require("jsonwebtoken");
+
+// Generate JWT token
+function generateToken(user) {
+  return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+    expiresIn: "24h",
+  });
+}
+
+// Verify token middleware
+const verifyToken = (req, res, next) => {
+  const token = req.headers["authorization"]?.split(" ")[1];
+
+  if (!token) {
+    return res.status(403).json({ message: "No token provided" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
+```
+
+## Rate Limiting
+
+Protect your API from abuse using rate limiting:
+
+```javascript
+const rateLimit = require("express-rate-limit");
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per window
+  message: "Too many requests, please try again later",
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply to all routes
+app.use("/api/", apiLimiter);
+```
+
+## Input Validation
+
+Validate all incoming data to prevent injection attacks:
+
+```javascript
+const { body, validationResult } = require("express-validator");
+
+// Validation middleware
+const validateUser = [
+  body("email").isEmail().normalizeEmail(),
+  body("password").isLength({ min: 8 }),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+];
+```

@@ -10,8 +10,8 @@ const BASE_URL =
     : "/";
 
 const config: Config = {
-  title: "Use Docusaurus",
-  tagline: "Docusaurus is cool",
+  title: "Docusaurus Customized to document Component Libraries, SDKs and more",
+  tagline: "Docusaurus is great to build static blogs and docs.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -87,7 +87,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Use Docu",
+      title: "Use Docusaurus",
       logo: {
         alt: "My Site Logo",
         src: "img/logo.svg",

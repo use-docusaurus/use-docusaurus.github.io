@@ -29,6 +29,9 @@
   .main-wrapper > div {
     @apply md:px-0;
   }
+  div[class*="authorCol_"] {
+    @apply md:pl-0;
+  }
 }
 
 /* Style each blog card */
@@ -36,7 +39,7 @@
 .blog-tags-post-list-page,
 .blog-list-page {
   article {
-    @apply py-8 px-8 rounded-xl bg-gray-50 dark:bg-gray-800 !mb-8;
+    @apply py-8 px-8 rounded-xl bg-gray-50 hover:bg-gray-100 cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-800 !mb-8;
   }
 }
 
@@ -78,12 +81,39 @@
 .blog-list-page {
   /* We need col--12 here */
   main {
-    @apply md:ml-0 pl-0;
+    @apply md:ml-0 pl-0 grid grid-cols-3 gap-6;
     --ifm-col-width: calc(12 / 12 * 100%);
     flex: 0 0 var(--ifm-col-width) !important;
   }
   .row {
     @apply md:ml-0 md:pl-0;
+  }
+
+  /* div[class*="authorCol_"] {
+    @apply hidden;
+  } */
+
+  main > article {
+    @apply !mb-0 relative min-h-40 max-h-96 overflow-hidden;
+  }
+
+  main > article::after {
+    @apply content-[''] absolute bottom-0 left-0 right-0 h-12 pointer-events-none
+      bg-gradient-to-b 
+      from-transparent to-gray-50
+      dark:from-transparent dark:to-gray-700 dark:hover:to-gray-800;
+  }
+
+  main > article > footer {
+    @apply hidden;
+  }
+
+  .pagination-nav {
+    @apply block;
+  }
+
+  .pagination-nav__link {
+    @apply flex justify-center items-center hover:border-gray-400 dark:hover:border-gray-500;
   }
 }
 

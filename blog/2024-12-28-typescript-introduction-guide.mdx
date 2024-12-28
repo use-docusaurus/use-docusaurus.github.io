@@ -1,0 +1,64 @@
+---
+slug: typescript-introduction-guide
+title: Introduction to TypeScript
+description: A beginner's guide to TypeScript fundamentals and type safety in JavaScript
+date: 2024-12-28
+tags: [typescript, javascript, programming, web-development]
+---
+
+TypeScript brings static typing to JavaScript, making your code more maintainable and catching errors before runtime. Let's explore the basics of this powerful language.
+
+{/* truncate */}
+
+## Basic Types
+
+TypeScript provides several basic types for variable declarations:
+
+```typescript
+// Basic type annotations
+let name: string = "John";
+let age: number = 30;
+let isActive: boolean = true;
+let numbers: number[] = [1, 2, 3];
+let tuple: [string, number] = ["hello", 42];
+
+// Union types
+let id: string | number = "abc123";
+id = 123; // Also valid
+```
+
+## Interfaces and Types
+
+Define custom types for objects and function signatures:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional property
+  readonly createdAt: Date; // Read-only property
+}
+
+type ActionHandler = (event: MouseEvent) => void;
+
+// Using the interface
+const user: User = {
+  id: 1,
+  name: "Alice",
+  createdAt: new Date(),
+};
+```
+
+## Generics
+
+Create reusable components that work with multiple types:
+
+```typescript
+function getFirst<T>(array: T[]): T | undefined {
+  return array[0];
+}
+
+// Usage
+const firstNumber = getFirst([1, 2, 3]); // Type: number
+const firstString = getFirst(["a", "b", "c"]); // Type: string
+```

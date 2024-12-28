@@ -30,10 +30,15 @@
 }
 
 .blog-authors-posts-page,
-.blog-tags-post-list-page,
-.blog-list-page {
+.blog-tags-post-list-page {
   h2[class*="title_"] {
     @apply !text-4xl;
+  }
+}
+
+.blog-list-page {
+  h2[class*="title_"] {
+    @apply !text-2xl font-normal;
   }
 }
 

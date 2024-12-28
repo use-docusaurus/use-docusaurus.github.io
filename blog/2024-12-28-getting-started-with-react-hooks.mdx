@@ -1,0 +1,72 @@
+---
+slug: getting-started-with-react-hooks
+title: Getting Started with React Hooks
+description: A comprehensive guide to understanding and implementing React Hooks in your applications
+date: 2024-12-28
+tags: [react, javascript, hooks, frontend]
+---
+
+React Hooks revolutionized how we write components by enabling state and lifecycle features in functional components. Let's explore the most common hooks and their practical applications.
+
+{/* truncate */}
+
+## Understanding useState
+
+The useState hook is your gateway to state management in functional components. It provides a simple way to declare state variables and their update functions.
+
+```javascript
+const [count, setCount] = useState(0);
+```
+
+### Common Use Cases
+
+- Form input management
+- Toggle states
+- Counter implementations
+
+## useEffect in Practice
+
+The useEffect hook handles side effects in your components, making it perfect for:
+
+- Data fetching
+- Subscriptions
+- DOM manipulations
+
+```javascript
+useEffect(() => {
+  document.title = `Count: ${count}`;
+}, [count]);
+```
+
+## Custom Hooks
+
+Learn how to create reusable logic with custom hooks:
+
+- Extract common stateful logic
+- Share behavior between components
+- Keep your code DRY
+
+### Example Custom Hook
+
+```javascript
+function useWindowSize() {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return size;
+}
+```

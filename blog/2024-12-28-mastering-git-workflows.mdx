@@ -1,0 +1,47 @@
+---
+slug: css-grid-responsive-layouts
+title: Building Responsive Layouts with CSS Grid
+description: Master CSS Grid to create modern, responsive web layouts with less code
+date: 2024-12-28
+tags: [css, web-design, responsive-design, frontend]
+---
+
+CSS Grid has revolutionized how we build layouts for the web. Learn how to create complex, responsive designs with this powerful layout system.
+
+{/* truncate */}
+
+## Grid Fundamentals
+
+Create a basic grid layout with minimal code:
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+```
+
+### Key Grid Properties
+
+- `grid-template-columns`
+- `grid-template-rows`
+- `grid-gap`
+- `grid-template-areas`
+
+## Advanced Grid Techniques
+
+Create responsive layouts without media queries:
+
+```css
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  gap: 2rem;
+}
+
+.card {
+  grid-column: span 1;
+  /* Span 2 columns for featured items */
+```

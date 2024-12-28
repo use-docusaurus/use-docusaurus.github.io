@@ -1,0 +1,72 @@
+---
+slug: essential-design-patterns-for-developers
+title: 5 Design Patterns Every Developer Should Know
+description: A deep dive into essential software design patterns that improve code quality
+date: 2024-12-28
+tags: [design-patterns, software-architecture, programming]
+---
+
+Design patterns are proven solutions to common programming challenges. Understanding these patterns can significantly improve your code quality and maintainability.
+
+{/* truncate */}
+
+## Singleton Pattern
+
+The Singleton pattern ensures a class has only one instance while providing global access to this instance.
+
+```javascript
+class Database {
+    private static instance: Database;
+
+    private constructor() {}
+
+    public static getInstance(): Database {
+        if (!Database.instance) {
+            Database.instance = new Database();
+        }
+        return Database.instance;
+    }
+}
+```
+
+## Observer Pattern
+
+Keep objects informed of changes without tightly coupling them together.
+
+```javascript
+class EventEmitter {
+    private listeners = {};
+
+    subscribe(event, callback) {
+        if (!this.listeners[event]) {
+            this.listeners[event] = [];
+        }
+        this.listeners[event].push(callback);
+    }
+
+    emit(event, data) {
+        if (this.listeners[event]) {
+            this.listeners[event].forEach(callback => callback(data));
+        }
+    }
+}
+```
+
+## Factory Pattern
+
+Create objects without explicitly specifying their exact classes:
+
+```javascript
+class UserFactory {
+  createUser(type) {
+    switch (type) {
+      case "admin":
+        return new AdminUser();
+      case "regular":
+        return new RegularUser();
+      default:
+        throw new Error("Invalid user type");
+    }
+  }
+}
+```
