@@ -11,7 +11,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container py-20 lg:py-32">
+      <div className="container py-8 lg:py-16">
         <Heading
           as="h1"
           className="hero__title mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight sm:text-7xl"

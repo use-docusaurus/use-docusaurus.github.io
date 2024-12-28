@@ -1,5 +1,10 @@
 .navbar__inner,
 .footer > div,
-.main-wrapper {
+.docs-wrapper .main-wrapper,
+.blog-post-page .main-wrapper,
+.blog-authors-posts-page .main-wrapper,
+.blog-tags-post-list-page .main-wrapper,
+.blog-authors-list-page .main-wrapper,
+.blog-list-page .main-wrapper {
   @apply container md:px-16 mx-auto;
 }

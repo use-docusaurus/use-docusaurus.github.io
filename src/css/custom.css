@@ -51,13 +51,9 @@
 @import "../styles/blog.css";
 @import "../styles/font-sizes.css";
 @import "../styles/avatar.css";
+@import "../styles/hero.css";
 
 /* Blog - Remove padding of container */
-
-.hero--primary {
-  --ifm-hero-background-color: var(--ifm-background-color);
-  --ifm-hero-text-color: var(--ifm-font-color-base);
-}
 
 /* footer.row {
   @apply items-center;
