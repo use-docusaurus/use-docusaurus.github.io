@@ -48,6 +48,10 @@ const config: Config = {
     [
       "classic",
       {
+        gtag: {
+          trackingID: "G-DDT96EDXKZ",
+          anonymizeIP: true,
+        },
         docs: {
           breadcrumbs: true,
           sidebarPath: "./sidebars.ts",
