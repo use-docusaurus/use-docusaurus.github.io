@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Docusaurus Customized to document Component Libraries, SDKs and more Blog</title>
+        <title>Docusaurus Customized for Blogs, Component Libraries, SDKs and more Blog</title>
         <link>https://use-docusaurus.github.io/blog</link>
-        <description>Docusaurus Customized to document Component Libraries, SDKs and more Blog</description>
+        <description>Docusaurus Customized for Blogs, Component Libraries, SDKs and more Blog</description>
         <lastBuildDate>Sat, 28 Dec 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
@@ -193,7 +193,7 @@
             <category>frontend</category>
         </item>
         <item>
-            <title><![CDATA[Maximizing Productivity in the Digital Age: Strategies for Success]]></title>
+            <title><![CDATA[Maximizing Productivity in the Digital Age]]></title>
             <link>https://use-docusaurus.github.io/blog/maximizing-productivity-digital-age</link>
             <guid>https://use-docusaurus.github.io/blog/maximizing-productivity-digital-age</guid>
             <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
