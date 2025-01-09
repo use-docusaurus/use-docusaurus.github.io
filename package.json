@@ -19,12 +19,12 @@
     "start:docu-ladle": "concurrently --kill-others \"npm run start\" \"npm run ladle:serve\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.6.3",
-    "@docusaurus/plugin-google-gtag": "^3.6.3",
-    "@docusaurus/preset-classic": "^3.6.3",
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/plugin-google-gtag": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "@ladle/react": "^5.0.0",
+    "@ladle/react": "^5.0.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
