@@ -1,5 +1,5 @@
 .navbar {
-  @apply sm:px-0;
+  @apply sm:!px-0;
 }
 
 .navbar__inner,
