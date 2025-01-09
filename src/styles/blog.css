@@ -77,7 +77,7 @@
   }
 
   main {
-    @apply md:ml-0 md:pl-0;
+    @apply sm:px-0 md:ml-0 md:pl-0;
     --ifm-col-width: calc(10 / 12 * 100%);
     flex: 0 0 var(--ifm-col-width) !important;
   }
@@ -89,7 +89,7 @@
 .blog-list-page {
   /* We need col--12 here */
   main {
-    @apply md:ml-0 pl-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4;
+    @apply md:ml-0 sm:pl-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4;
     --ifm-col-width: calc(12 / 12 * 100%);
     flex: 0 0 var(--ifm-col-width) !important;
   }

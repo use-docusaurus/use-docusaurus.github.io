@@ -1,8 +1,16 @@
 .docs-wrapper {
+  [class*="docItemCol_"] {
+    @apply sm:px-0;
+  }
+
   /* Give more breathing space to page content */
   [class*="docItemContainer_"],
   [class*="generatedIndexPage_"] {
-    @apply px-4 pt-1;
+    @apply md:px-4 pt-1;
+  }
+
+  .container {
+    @apply md:px-0;
   }
 
   /* Remove background from breadcrumbs, make them subtle */
@@ -14,7 +22,7 @@
     @apply p-0;
   }
   .theme-doc-breadcrumbs {
-    @apply md:!mb-6;
+    @apply sm:!mb-6;
   }
 
   /* Add divider under h1 */
