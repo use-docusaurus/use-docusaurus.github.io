@@ -29,9 +29,9 @@
   .main-wrapper > div {
     @apply md:px-0;
   }
-  div[class*="authorCol_"] {
+  /* div[class*="authorCol_"] {
     @apply md:pl-0;
-  }
+  } */
 }
 
 /* Style each blog card */
