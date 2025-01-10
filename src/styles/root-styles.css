@@ -22,7 +22,7 @@
     Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  --ifm-navbar-height: 4.75rem;
+  /* --ifm-navbar-height: 4.75rem; */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

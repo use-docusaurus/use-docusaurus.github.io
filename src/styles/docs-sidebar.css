@@ -7,7 +7,7 @@
   /* Remove borders */
   .theme-doc-sidebar-container,
   .table-of-contents__left-border {
-    @apply border;
+    @apply border-transparent hover:border-gray-200;
   }
 
   /* Customize alignment & fonts of items in sidebar */
